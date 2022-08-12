@@ -1,6 +1,10 @@
-const {MONGO_USR, MONGO_PWR,MONGO_DB,MONGO_URI,} = require('dotenv').config()
-//llamando a mongoose
 const mongoose = require('mongoose');
+require('dotenv').config()
+
+const MONGO_URI =  process.env.MONGO_URI2
+//llamando a mongoose
+
+
 
 
 mongoose.connect(MONGO_URI, { 

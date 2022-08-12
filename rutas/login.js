@@ -5,6 +5,7 @@ const session = require("express-session");
 const passport = require("passport");
 const UserModel = require("../modelos/usuario");
 const LocalStrategy = require("passport-local").Strategy;
+const route = require("./routes");
 
 app.use(
   session({
@@ -93,23 +94,7 @@ passport.deserializeUser((id, done) => {
   UserModel.findById(id, done);
 });
 
+app.use(route)
 
-
-
-// app.get("/", async (req, res) => {
-//   try {
-//     if (passport.authenticate("login")) {
-//       res.json("USUARIO LOGEADO");
-//     } else {
-//       res.json("USUARIO no LOGEADO");
-//     }
-
-//     //  passport.authenticate("login")),
-//     // const arrayUsuarios = await loginMong.find({ idUsuario: "2" });
-//     // console.log(arrayUsuarios);
-//   } catch (e) {
-//     console.log(e);
-//   }
-// });
 
 module.exports = app;
