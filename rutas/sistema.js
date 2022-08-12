@@ -9,7 +9,7 @@ sistema.get("/admin", (req, res) => {
             claveUsuario: "clave123#debe-estar-encriptada",
             tipoUsuario: "Administrador",
             },
-        usuariosAlumnos: 
+        usuarios: 
             [
                 {
                     idUsuario: 2,

@@ -23,6 +23,11 @@ mongoose.connect(uri, {
 .then(() => console.log('conectado a mongo'))
 .catch(e => console.log(e))
 
+//ruta demo passport
+var ingreso = require('./rutas/ingreso');
+app.use('/ingreso', ingreso);
+
+app.use('/vistaform', authRouter);
 //Ruta ingreso usuario (login):
 const login = require('./rutas/login')
 

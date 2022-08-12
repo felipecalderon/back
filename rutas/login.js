@@ -1,3 +1,20 @@
+/*
+    Datos alumno:
+        -Nombre de Usuario 
+        -Clave
+        -Correo
+        -Telefono
+        -Ubicacion (sede)
+        -Actividad
+
+    Datos administrador:
+        -Nombre de Usuario 
+        -Clave
+        -Correo
+        -Telefono
+        -
+*/
+
 const express = require("express")
 const login = express.Router()
 const loginMong = require('../modelos/usuario')
