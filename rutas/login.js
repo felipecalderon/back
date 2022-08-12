@@ -1,17 +1,115 @@
-const express = require("express")
-const login = express.Router()
-const loginMong = require('../modelos/usuario')
+const express = require("express");
+// const login = express.Router();
+const app = express();
+const session = require("express-session");
+const passport = require("passport");
+const UserModel = require("../modelos/usuario");
+const LocalStrategy = require("passport-local").Strategy;
 
-login.get("/", async (req, res) => {
-    try{
-        const arrayUsuarios = await loginMong.find({ idUsuario : "2"})
-        console.log(arrayUsuarios)
-        res.json(arrayUsuarios)
+app.use(
+  session({
+    secret: "nocountry",
+    cookie: {
+      httpOnly: false,
+      secure: false,
+      maxAge: 300000,
+    },
+    rolling: true,
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+// INICIALIZACION DE PASSPORT:
+app.use(passport.initialize());
+app.use(passport.session());
+
+// CONFIGURACION DEL COMPORTAMIENTO DE LA ESTRATEGIA:
+// LOGIN   ------------------
+passport.use(
+  "login",
+  new LocalStrategy((username, password, done) => {
+    UserModel.findOne({ username: username }, (err, user) => {
+      if (err) {
+        return done(err);
+      }
+      if (!user) {
+        console.log("no se encontro usuario");
+        return done(null, false);
+      }
+      if (!validatePass(user, password)) {
+        console.log("pasword invalido");
+        return done(null, false);
+      }
+      return done(null, user);
+    });
+  })
+);
+
+// REGISTRO------------------
+passport.use(
+  "signup",
+  new LocalStrategy(
+    { passReqToCallback: true },
+    (req, username, password, done) => {
+      UserModel.findOne({ username: username }, (err, user) => {
+        if (err) {
+          return done(err);
+        }
+        if (user) {
+          console.log("el usuario ya existe");
+          return done(null, false);
+        }
+
+        const NewUser = {
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.email,
+          username: username,
+          password: createHash(password),
+        };
+        console.log(`Se ha creado el siguiente usuario:
+      ${NewUser}`);
+
+        UserModel.create(NewUser, (err, userWithId) => {
+          if (err) {
+            console.log(`Error en el registro: ${err}`);
+            return done(err);
+          }
+          console.log(userWithId);
+          console.log("registro satisfactorio");
+          return done(null, userWithId);
+        });
+      });
     }
-    
-    catch(e){
-        console.log(e)
-    }
+  )
+);
+
+// SERIALIZACION Y DESERIALIZACION:
+passport.serializeUser((user, done) => {
+  done(null, user._id);
+});
+passport.deserializeUser((id, done) => {
+  UserModel.findById(id, done);
 });
 
-module.exports = login
+
+
+
+// app.get("/", async (req, res) => {
+//   try {
+//     if (passport.authenticate("login")) {
+//       res.json("USUARIO LOGEADO");
+//     } else {
+//       res.json("USUARIO no LOGEADO");
+//     }
+
+//     //  passport.authenticate("login")),
+//     // const arrayUsuarios = await loginMong.find({ idUsuario: "2" });
+//     // console.log(arrayUsuarios);
+//   } catch (e) {
+//     console.log(e);
+//   }
+// });
+
+module.exports = app;

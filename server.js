@@ -10,18 +10,18 @@ app.use(bodyParser.json())
 
 
 //conexión a mongoDB - SEGURIDAD CON VARIABLES DE ENTORNO
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose');
 
-const usr = 'usertest'
-const pwr = 'tnZ1oURXdYDPmr9X'
-const db = 'sysgym'
-const uri = `mongodb+srv://${usr}:${pwr}@cluster0.1xynyxj.mongodb.net/${db}?retryWrites=true&w=majority`;
-mongoose.connect(uri, { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true, 
-})
-.then(() => console.log('conectado a mongo'))
-.catch(e => console.log(e))
+// const usr = 'usertest'
+// const pwr = 'tnZ1oURXdYDPmr9X'
+// const db = 'sysgym'
+// const uri = `mongodb+srv://${usr}:${pwr}@cluster0.1xynyxj.mongodb.net/${db}?retryWrites=true&w=majority`;
+// mongoose.connect(uri, { 
+//   useNewUrlParser: true, 
+//   useUnifiedTopology: true, 
+// })
+// .then(() => console.log('conectado a mongo'))
+// .catch(e => console.log(e))
 
 //Ruta ingreso usuario (login):
 const login = require('./rutas/login')

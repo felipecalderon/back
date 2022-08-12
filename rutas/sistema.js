@@ -1,7 +1,8 @@
 const express = require("express")
+
 const sistema = express.Router()
 
-sistema.get("/admin", (req, res) => {
+sistema.get("/admin",  (req, res) => {
     res.json({
         usuarioLogueado: {
             idUsuario: 1,
