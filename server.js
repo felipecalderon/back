@@ -1,6 +1,8 @@
 //llamado a módulos y def de puertos
 const express = require("express");
-const bodyParser = require('body-parser')
+
+//hola desde rama Felipe
+
 const app = express();
 const port = 3050
 
@@ -23,6 +25,11 @@ app.use(bodyParser.json())
 // .then(() => console.log('conectado a mongo'))
 // .catch(e => console.log(e))
 
+//ruta demo passport
+var ingreso = require('./rutas/ingreso');
+app.use('/ingreso', ingreso);
+
+app.use('/vistaform', authRouter);
 //Ruta ingreso usuario (login):
 const login = require('./rutas/login')
 
