@@ -6,6 +6,10 @@ const passport = require("passport");
 const UserModel = require("../modelos/usuario");
 const LocalStrategy = require("passport-local").Strategy;
 const route = require("./routes");
+const validatePass = require("../utils/passValidator");
+const createHash = require("../utils/hasGenerator");
+
+
 
 app.use(
   session({
