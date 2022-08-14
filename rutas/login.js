@@ -70,6 +70,9 @@ passport.use(
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           email: req.body.email,
+          adress: req.body.adress,
+          age: req.body.age,
+          phonenumber: req.body.phonenumber,
           username: username,
           password: createHash(password),
         };
