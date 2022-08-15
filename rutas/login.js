@@ -10,7 +10,6 @@ const validatePass = require("../utils/passValidator");
 const createHash = require("../utils/hasGenerator");
 
 
-
 app.use(
   session({
     secret: "nocountry",

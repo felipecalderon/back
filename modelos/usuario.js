@@ -4,9 +4,6 @@ require('dotenv').config()
 const MONGO_URI =  process.env.MONGO_URI
 //llamando a mongoose
 
-
-
-
 mongoose.connect(MONGO_URI, { 
   useNewUrlParser: true, 
   useUnifiedTopology: true, 
@@ -14,8 +11,6 @@ mongoose.connect(MONGO_URI, {
 .then(() => console.log('conectado a mongo'))
 .catch(e => console.log(e))
 
-
-//¿Como funciona el esquema?
 const UsuarioSchema = new mongoose.Schema({
   firstName: {type: String, required: true, max: 100},
   lastName: {type: String, required: true, max: 100},
