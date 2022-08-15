@@ -13,7 +13,7 @@ function postLogin(req, res) {
       res.send("USUARIO LOGEADO");
     }
   }
-  
+
 function noLogin(req, res)  {
     res.send("Usuario no es correcto");
   };
