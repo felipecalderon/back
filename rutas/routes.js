@@ -6,11 +6,17 @@ const passport = require("passport");
 route.use(express.json());
 route.use(express.urlencoded({ extended: true }));
 
-const controlers = require("../controladores/controler");
+const controlers = require("../src/controler");
 
 // ---------------------------------------------------------
 // root/pagina principal
 route.get("/", controlers.root);
+
+// login por token
+route.post('/jswtoken', 
+  passport.authenticate('jwt', { session: false }), 
+  controlers.jswToken
+)
 
 // login
 route.get("/login", controlers.getLogin);

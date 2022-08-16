@@ -4,6 +4,13 @@ const session = require("express-session");
 const passport = require("passport");
 const UserModel = require("../modelos/usuario");
 const LocalStrategy = require("passport-local").Strategy;
+var JwtStrategy = require('passport-jwt').Strategy,
+    ExtractJwt = require('passport-jwt').ExtractJwt;
+var opts = {}
+  opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+  opts.secretOrKey = 'secret';
+  opts.issuer = 'accounts.examplesoft.com';
+  opts.audience = 'yoursite.net';
 const validatePass = require("../utils/passValidator");
 const createHash = require("../utils/hasGenerator");
 
@@ -26,6 +33,21 @@ login.use(passport.initialize());
 login.use(passport.session());
 
 // CONFIGURACION DEL COMPORTAMIENTO DE LA ESTRATEGIA:
+// JSON WEB TOKEN (AUTH)
+passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
+  User.findOne({id: jwt_payload.sub}, function(err, user) {
+      if (err) {
+          return done(err, false);
+      }
+      if (user) {
+          return done(null, user);
+      } else {
+          return done(null, false);
+          // or you could create a new account
+      }
+  });
+}));
+
 // LOGIN   ------------------
 passport.use(
   "login",
