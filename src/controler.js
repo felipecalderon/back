@@ -9,7 +9,7 @@ function postLogin(req, res) {
   if (req.isAuthenticated()) {
     console.log(req.user);
     let user = req.user;
-    res.status(200).send('USUARIO LOGEADO');
+    res.send('USUARIO LOGEADO');
   }
 }
 
@@ -62,7 +62,7 @@ function noSignout(req, res) {
 
 function userLogged(req, res) {
   if (req.isAuthenticated()) {
-    res.send('EL USUARIO ESTA LOGEADO ACTUALMENTE');
+    res.status(200).send('EL USUARIO ESTA LOGEADO ACTUALMENTE');
   } else {
     res.redirect('/');
   }
