@@ -9,7 +9,7 @@ function postLogin(req, res) {
   if (req.isAuthenticated()) {
     console.log(req.user);
     let user = req.user;
-    res.send('USUARIO LOGEADO');
+    res.status(200).send('USUARIO LOGEADO');
   }
 }
 
