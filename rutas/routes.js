@@ -1,5 +1,4 @@
 const express = require("express");
-
 const route = express.Router();
 const passport = require("passport");
 
@@ -9,15 +8,21 @@ route.use(express.urlencoded({ extended: true }));
 const controlers = require("../src/controler");
 
 // ---------------------------------------------------------
+//TEST
+route.get("/registro", controlers.getRegistro);
+route.post("/registro", controlers.postRegistro);
+
 // root/pagina principal
 route.get("/", controlers.root);
 
 // login por token
-route.post('/jswtoken', 
-  passport.authenticate('jwt', { session: false }), 
+/*
+route.post(
+  "/jswtoken",
+  passport.authenticate("jwt", { session: false }),
   controlers.jswToken
-)
-
+);
+*/
 // login
 route.get("/login", controlers.getLogin);
 route.post(
@@ -25,7 +30,7 @@ route.post(
   passport.authenticate("login", { failureRedirect: "/nologin" }),
   controlers.postLogin
 );
-route.get("/nologin", controlers.noLogin)
+route.get("/nologin", controlers.noLogin);
 
 // registro
 route.get("/signout", controlers.getSignout);
@@ -34,12 +39,11 @@ route.post(
   passport.authenticate("signup", { failureRedirect: "/nosignout" }),
   controlers.postSignout
 );
-route.get("/nosignout", controlers.noSignout)
+route.get("/nosignout", controlers.noSignout);
 
 // hago este endpoint para probar si funciona el logeo
 // luego de hacer un /login de manera correcta se deberia mostrar "EL USUARIO ESTA LOGEADO ACTUALMENTE"
 // en caso de no estarlo se lo deberia redireccionar a la pagina principal.
 route.get("/userLogged", controlers.userLogged);
-
 
 module.exports = route;

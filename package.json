@@ -13,16 +13,20 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
     "mongoose": "^6.5.2",
     "passport": "^0.6.0",
+    "passport-auth-token": "^1.0.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "ejs": "^3.1.8",
-    "nodemon": "^2.0.19"
+    "eslint": "^8.22.0",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1"
   }
 }
