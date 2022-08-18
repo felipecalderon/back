@@ -9,8 +9,10 @@ const controlers = require("../src/controler");
 
 // ---------------------------------------------------------
 //TEST
-route.get("/registro", controlers.getRegistro);
-route.post("/registro", controlers.postRegistro);
+route.post("/ingreso", controlers.postIngreso);
+
+route.get("/registroalumno", controlers.getRegistro);
+route.post("/registroalumno", controlers.postRegistro);
 
 // root/pagina principal
 route.get("/", controlers.root);
