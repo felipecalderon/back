@@ -2,29 +2,22 @@ const express = require("express");
 const route = express.Router();
 const passport = require("passport");
 
+//Rutas de Controladores
+const controlers = require("../src/controler");
+const ingreso = require("../src/ingreso");
+const registro = require("../src/registro");
+
 route.use(express.json());
 route.use(express.urlencoded({ extended: true }));
 
-const controlers = require("../src/controler");
-
 // ---------------------------------------------------------
-//TEST
-route.post("/ingreso", controlers.postIngreso);
-
-route.get("/registroalumno", controlers.getRegistro);
-route.post("/registroalumno", controlers.postRegistro);
+//TEST LOGIN Y REGISTRO SIN PASSPORT
+route.post("/ingreso", ingreso.postIngreso);
+route.post("/registroalumno", registro.postRegistro);
 
 // root/pagina principal
 route.get("/", controlers.root);
 
-// login por token
-/*
-route.post(
-  "/jswtoken",
-  passport.authenticate("jwt", { session: false }),
-  controlers.jswToken
-);
-*/
 // login
 route.get("/login", controlers.getLogin);
 route.post(
