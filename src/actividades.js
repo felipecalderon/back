@@ -3,7 +3,7 @@ exports.postActividades = (req, res) => {
     error: null,
     data: {
       titulo: "actividades ruta protegida",
-      user: req.user,
+      user: req.usuario,
     },
   });
 };
