@@ -1,4 +1,6 @@
+const config = require('dotenv').config
 let instance = null;
+console.log(MONGO_URI);
 
 class Factory {
   constructor(data) {
@@ -16,7 +18,7 @@ class Factory {
   connection(data) {
     if (data == "file") {
     } else if (data == "mongo") {
-      mongoose.connect(configs.MONGO_URI, {
+      mongoose.connect(config.MONGO_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });

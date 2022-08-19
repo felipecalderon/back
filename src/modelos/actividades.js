@@ -8,5 +8,5 @@ const Schema = new mongoose.Schema({
 });
 
 //Creando el modelo
-const loginMong = mongoose.model("Actividad", Schema);
-module.exports = loginMong;
+const model = mongoose.model("Actividad", Schema);
+module.exports = model;

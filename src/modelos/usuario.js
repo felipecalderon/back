@@ -12,6 +12,6 @@ const Schema = new mongoose.Schema({
 });
 
 //Creando el modelo
-const loginMong = mongoose.model('Usuario', Schema)
-module.exports = loginMong
+const model = mongoose.model('Usuario', Schema)
+module.exports = model
 
