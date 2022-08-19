@@ -38,6 +38,7 @@ exports.postIngreso = async (req, res) => {
         res.status(200).header("auth-token", token).json({
           data: { token },
         });
+
         // callback con la respuesta negativa en caso que las claves no coincidan
       } else {
         return res.status(400).json({ error: "Clave no coincide" });
