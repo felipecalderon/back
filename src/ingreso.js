@@ -30,8 +30,8 @@ exports.postIngreso = async (req, res) => {
             id: usuarioExiste._id,
             nombre: usuarioExiste.name,
           },
-          //cambiar secret token por una variable de entorno
-          "tokensecreto"
+          //agregada variable de entorno
+          process.env.TOKENSECRETO
         );
 
         //visualización del token
