@@ -1,22 +1,6 @@
 const mongoose = require('mongoose');
-require('dotenv').config()
 
-const MONGO_URI =  process.env.MONGO_URI
-//llamando a mongoose
-
-
-
-
-mongoose.connect(MONGO_URI, { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true, 
-})
-.then(() => console.log('conectado a mongo'))
-.catch(e => console.log(e))
-
-
-//¿Como funciona el esquema?
-const UsuarioSchema = new mongoose.Schema({
+const Schema = new mongoose.Schema({
   firstName: {type: String, required: true, max: 100},
   lastName: {type: String, required: true, max: 100},
   adress: {type: String, required: true, max: 100},
@@ -28,6 +12,6 @@ const UsuarioSchema = new mongoose.Schema({
 });
 
 //Creando el modelo
-const loginMong = mongoose.model('Usuario', UsuarioSchema)
+const loginMong = mongoose.model('Usuario', Schema)
 module.exports = loginMong
 

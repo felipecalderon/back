@@ -6,7 +6,7 @@ const passport = require("passport");
 route.use(express.json());
 route.use(express.urlencoded({ extended: true }));
 
-const controlers = require("../src/controler");
+const controlers = require("../src/controllers/controler");
 
 // ---------------------------------------------------------
 // root/pagina principal
