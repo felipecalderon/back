@@ -1,6 +1,6 @@
-const app = require('./rutas/login');
-const PORT = process.env.PORT || 3000
-const Factory = require('./utils/factory')
+const app = require("./rutas/login");
+const PORT = process.env.PORT || 3000;
+const Factory = require("./utils/factory");
 
 const DBSChosen = process.argv[2] || "mongo";
 const DBS = Factory.getInstance(DBSChosen);
