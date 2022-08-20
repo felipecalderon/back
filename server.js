@@ -1,13 +1,13 @@
+console.clear();
 const app = require("./rutas/login");
 const PORT = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const MONGO_URI = process.env.MONGO_URI;
+URIMONGO = `mongodb+srv://${process.env.MONGO_USR}:${process.env.MONGO_PWR}@${process.env.MONGO_CLOUD}/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
 //llamando a mongoose
-
 mongoose
-  .connect(MONGO_URI, {
+  .connect(URIMONGO, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
