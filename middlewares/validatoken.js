@@ -1,13 +1,9 @@
 const jwt = require("jsonwebtoken");
 
 exports.verificaToken = (req, res, next) => {
-  // busca en el header el token
   const token = req.header("auth-token");
-  //si el token no existe envía error
   if (!token) return res.status(401).json({ error: "acceso no autorizado" });
-
   try {
-    // verifica si el token es válido con la secret key
     const verificado = jwt.verify(token, process.env.TOKENSECRETO);
     req.usuario = verificado;
     next();
