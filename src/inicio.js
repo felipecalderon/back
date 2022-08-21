@@ -3,6 +3,6 @@ exports.home = (req, res) => {
   
   Rutas {parametros}:
   /ingreso (GET){email, password}
-  /registro (POST){name, email, password}
+  /registro (POST){nombre, apellido, email, password}
   /actividades (POST){auth-token}`);
 };
