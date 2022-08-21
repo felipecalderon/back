@@ -1,5 +1,5 @@
-const Usuario = require("../modelos/usuario");
-const createHash = require("../utils/hasGenerator");
+const Usuario = require("../../modelos/usuario");
+const createHash = require("../../utils/hasGenerator");
 
 //Constrolador del registro de alumnos en mongo
 exports.postRegistro = async (req, res) => {
