@@ -14,7 +14,7 @@ mongoose
   .then(() => console.log("conectado a mongo"))
   .catch((e) => console.log(e));
 
-//Puerto
+//Puert
 app.listen(PORT, () => {
   console.log(`Funcionando en http://localhost:${PORT}`);
 });
