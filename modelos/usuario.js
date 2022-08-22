@@ -12,7 +12,6 @@ const adminSchema = new mongoose.Schema({
 const alumnoSchema = new mongoose.Schema({
   codigoAlumno: {
     type: mongoose.Types.ObjectId,
-    ref: "Matricula",
   },
   actividades: [
     {
@@ -49,6 +48,22 @@ const usuarioSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    direccion: {
+      type: String,
+      required: true,
+    },
+    telefono: {
+      type: String,
+      required: true,
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+    rol: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,
@@ -71,11 +86,11 @@ const usuarioSchema = new mongoose.Schema(
   }
 );
 
-const Usuario = mongoose.model("Usuario", usuarioSchema);
 const Alumno = mongoose.model("Alumno", alumnoSchema);
 const Actividad = mongoose.model("Actividad", actividadSchema);
+const Usuario = mongoose.model("Usuario", usuarioSchema);
 
-module.exports = (Usuario, Alumno, Actividad);
+module.exports = (Alumno, Actividad, Usuario);
 
 //Creando el modelo
 //module.exports = mongoose.model("Admin", AdminSchema);

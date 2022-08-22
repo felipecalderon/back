@@ -6,6 +6,7 @@ exports.postRegistro = async (req, res) => {
   // verifica si el correo existe
   const emailExiste = await Usuario.findOne({ email: req.body.email });
   if (emailExiste) {
+    console.log(emailExiste);
     return res.status(400).json({
       error: "correo ya registrado",
     });
@@ -14,6 +15,10 @@ exports.postRegistro = async (req, res) => {
   const usuario = new Usuario({
     nombre: req.body.nombre,
     apellido: req.body.apellido,
+    direccion: req.body.direccion,
+    telefono: req.body.telefono,
+    username: req.body.username,
+    rol: req.body.rol,
     email: req.body.email,
     password: createHash(req.body.password),
   });
