@@ -1,6 +1,6 @@
 const config = require('dotenv').config
 let instance = null;
-console.log(MONGO_URI);
+// console.log(MONGO_URI);
 
 class Factory {
   constructor(data) {
