@@ -1,11 +1,4 @@
-const Contenedor = require("../../container/containerMongo/container");
-const Schema = require("../../models/productos");
-
-class ProductosDao extends Contenedor {
-  constructor() {
-    super(Schema);
-    this.model = Schema;
-  }
+function suma(){
+  let numero = (4 + 4)
+  return numero
 }
-
-module.exports = ProductosDao;

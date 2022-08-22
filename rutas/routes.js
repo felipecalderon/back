@@ -36,4 +36,7 @@ route.get("/nosignout", controlers.noSignout)
 route.get("/userLogged", controlers.userLogged);
 
 
+route.get("/inicio", controlers.inicio)
+
+
 module.exports = route;

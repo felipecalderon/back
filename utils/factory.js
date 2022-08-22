@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const MONGO_URI = process.env.MONGO_URI;
 let instance = null;
-console.log(MONGO_URI);
+
 
 class Factory {
   constructor(data) {
