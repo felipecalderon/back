@@ -12,6 +12,7 @@ route.use(express.urlencoded({ extended: true }));
 // ---------------------------------------------------------
 // root/pagina principal
 route.get("/", require("../src/inicio").home);
+route.get("/datos", require("../src/inicio").acceso);
 
 //LOGIN DE USUARIO
 route.post("/ingreso", require("../src/ingreso").postIngreso);
