@@ -2,16 +2,22 @@ const Usuario = require("../modelos/usuario");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+
 //Controlador del login
 exports.postIngreso = async (req, res) => {
+  
   // Primero buscamos si el correo coincide con la data en mongo
-  const usernameExiste = await Usuario.findOne({
+try{  let usernameExiste = await Usuario.findOne({
     $or: [{ email: req.body.email }, { username: req.body.email }],
   });
+
   if (!usernameExiste) {
     return res.status(401).json({
       error: "Usuario o correo incorrecto",
     });
+  }}catch(error){
+    console.log("EL ERROR ES");
+    console.log(error);
   }
 
   // Verificación de contraseña y creación de token si usuario esta correcto

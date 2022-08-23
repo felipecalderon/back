@@ -1,10 +1,11 @@
 const config = require('dotenv').config
 let instance = null;
 // console.log(MONGO_URI);
+const SchemaUsuario = require("../modelos/usuario");
 
 class Factory {
-  constructor(data) {
-    this.data = data;
+  constructor() {
+    this.data = SchemaUsuario;
   }
   static getInstance(data) {
     if (!instance) {
