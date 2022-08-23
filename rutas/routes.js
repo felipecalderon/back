@@ -1,39 +1,40 @@
 const express = require("express");
-
+const cors = require("cors");
 const route = express.Router();
-const passport = require("passport");
 
+//Validadores (middlewares)
+const validatoken = require("../middlewares/validatoken");
+
+route.use(cors());
 route.use(express.json());
 route.use(express.urlencoded({ extended: true }));
 
-const controlers = require("../src/controllers/controler");
-
 // ---------------------------------------------------------
 // root/pagina principal
-route.get("/", controlers.root);
+route.get("/", require("../src/inicio").home);
 
-// login
-route.get("/login", controlers.getLogin);
-route.post(
-  "/login",
-  passport.authenticate("login", { failureRedirect: "/nologin" }),
-  controlers.postLogin
+//LOGIN DE USUARIO
+route.post("/ingreso", require("../src/ingreso").postIngreso);
+
+//RUTAS PROTEGIDAS CON TOKEN:
+route.get(
+  "/actividades",
+  validatoken.verificaToken,
+  require("../src/actividades").postActividades
 );
-route.get("/nologin", controlers.noLogin)
 
-// registro
-route.get("/signout", controlers.getSignout);
+//REGISTRO DE USUARIO
 route.post(
-  "/signout",
-  passport.authenticate("signup", { failureRedirect: "/nosignout" }),
-  controlers.postSignout
+  "/crearusuario",
+  validatoken.verificaToken,
+  require("../src/crearUsuario").postRegistro
 );
-route.get("/nosignout", controlers.noSignout)
 
-// hago este endpoint para probar si funciona el logeo
-// luego de hacer un /login de manera correcta se deberia mostrar "EL USUARIO ESTA LOGEADO ACTUALMENTE"
-// en caso de no estarlo se lo deberia redireccionar a la pagina principal.
-route.get("/userLogged", controlers.userLogged);
-
+//CREACION DE ACTIVIDAD
+route.post(
+  "/crearactividad",
+  validatoken.verificaToken,
+  require("../src/crearActividad").postActividad
+);
 
 module.exports = route;
