@@ -1,5 +1,14 @@
-const Actividad = require("../modelos/actividad");
+const Actividad = require("../models/activity");
 
+exports.postActividades = (req, res) => {
+  res.status(200).json({
+    error: null,
+    data: {
+      titulo: "actividades ruta protegida",
+      user: req.usuario,
+    },
+  });
+};
 //Constrolador del registro de alumnos en mongo
 exports.postActividad = async (req, res) => {
   // verifica si la actividad existe
