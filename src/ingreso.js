@@ -5,17 +5,19 @@ const jwt = require("jsonwebtoken");
 //Controlador del login
 exports.postIngreso = async (req, res) => {
   // Primero buscamos si el correo coincide con la data en mongo
-  const usuarioExiste = await Usuario.findOne({ email: req.body.email });
-  if (!usuarioExiste) {
+  const usernameExiste = await Usuario.findOne({
+    $or: [{ email: req.body.email }, { username: req.body.email }],
+  });
+  if (!usernameExiste) {
     return res.status(400).json({
-      error: "El correo " + req.body.email + " no se encuentra registrado",
+      error: "Usuario o correo incorrecto",
     });
   }
 
   // Verificación de contraseña y creación de token si usuario esta correcto
   bcrypt.compare(
     req.body.password,
-    usuarioExiste.password,
+    usernameExiste.password,
 
     function (error, bien) {
       // si ocurre un error con la comparación del form con la data de mongo se mostrara acá
@@ -27,8 +29,7 @@ exports.postIngreso = async (req, res) => {
       if (bien) {
         const token = jwt.sign(
           {
-            id: usuarioExiste._id,
-            nombre: usuarioExiste.name,
+            id: usernameExiste._id,
             //token expira en 5 minutos:
             exp: Math.floor(Date.now() / 1000) + 60 * 5,
           },
@@ -36,7 +37,7 @@ exports.postIngreso = async (req, res) => {
           process.env.TOKENSECRETO
         );
 
-        // visualización del token
+        // envío del token al header
         res
           .status(200)
           .append("auth-token", token)

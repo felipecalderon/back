@@ -1,12 +1,7 @@
 const express = require("express");
 const route = express.Router();
 
-//Rutas de Controladores
-const inicio = require("../src/inicio");
-const ingreso = require("../src/ingreso");
-const crearUsuario = require("../src/crearUsuario");
-const crearActividad = require("../src/crearActividad");
-const actividades = require("../src/actividades");
+//Validadores (middlewares)
 const validatoken = require("../middlewares/validatoken");
 
 route.use(express.json());
@@ -14,22 +9,30 @@ route.use(express.urlencoded({ extended: true }));
 
 // ---------------------------------------------------------
 // root/pagina principal
-route.get("/", inicio.home);
+route.get("/", require("../src/inicio").home);
 
-//RUTA PROTEGIDA CON TOKEN
+//LOGIN DE USUARIO
+route.post("/ingreso", require("../src/ingreso").postIngreso);
+
+//RUTAS PROTEGIDAS CON TOKEN:
 route.get(
   "/actividades",
   validatoken.verificaToken,
-  actividades.postActividades
+  require("../src/actividades").postActividades
 );
 
-//LOGIN DE USUARIO
-route.post("/ingreso", ingreso.postIngreso);
-
 //REGISTRO DE USUARIO
-route.post("/registroalumno", crearUsuario.postRegistro);
+route.post(
+  "/crearusuario",
+  validatoken.verificaToken,
+  require("../src/crearUsuario").postRegistro
+);
 
 //CREACION DE ACTIVIDAD
-route.post("/crearactividad", crearActividad.postRegistro);
+route.post(
+  "/crearactividad",
+  validatoken.verificaToken,
+  require("../src/crearActividad").postActividad
+);
 
 module.exports = route;
