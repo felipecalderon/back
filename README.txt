@@ -2,7 +2,7 @@ DOCUMENTACION:
 
 BACKEND:
 Arquitectura utilizada: La app se compone de un server.js que va a tener la funcionalidad de leer el puerto
-el cual va a ser, por defecto el 3000 (en caso de agregarse uno diferente mediante variable global).
+el cual va a ser, por defecto el 3000 (en caso de agregarse uno diferente mediante variable de entorno).
  Entre otras cosas la arquitectura esta prediseña con el objetivo de ser escalable en su DBS, pudiendo
 agregare cuanta base de datos se requiera mediante un metodo que se encontrara en la clase Factory en el
 factory.js. Esta funcionalidad se dará mediante parametro agregado al arrancar la applicacion: actualmente los
