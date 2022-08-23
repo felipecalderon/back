@@ -11,7 +11,11 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("conectado a mongo"))
+  .then(() =>
+    console.log(
+      `Usando la BD "${process.env.MONGO_DB}" en MongoDB... ¡CONECTADO!`
+    )
+  )
   .catch((e) => console.log(e));
 
 //Puerto
