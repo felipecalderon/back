@@ -32,12 +32,12 @@ route.post(
 
 //CREACION DE ACTIVIDAD
 route.post(
-  "/createactivity",
+  "/addactivity",
   validatoken.verificaToken,
   require("../src/crearActividad").postActividad
 );
 
-//rutas pendientes
+// rutas pendientes
 // addpayments
 //
 module.exports = route;

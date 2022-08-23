@@ -30,6 +30,8 @@ exports.postIngreso = async (req, res) => {
         const token = jwt.sign(
           {
             id: usernameExiste._id,
+            email: usernameExiste.email,
+            nombre: usernameExiste.nombre,
             //token expira en 5 minutos:
             exp: Math.floor(Date.now() / 1000) + 60 * 5,
           },
@@ -38,10 +40,10 @@ exports.postIngreso = async (req, res) => {
         );
 
         // envío del token al header
-        res
-          .status(200)
-          .append("auth-token", token)
-          .redirect(200, "/actividades");
+        res.status(200).append("auth-token", token).json({
+          url: "/actividades",
+          token: token,
+        });
 
         // callback con la respuesta negativa en caso que las claves no coincidan
       } else {
