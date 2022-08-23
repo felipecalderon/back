@@ -12,30 +12,32 @@ route.use(express.urlencoded({ extended: true }));
 // ---------------------------------------------------------
 // root/pagina principal
 route.get("/", require("../src/inicio").home);
-route.get("/datos", require("../src/inicio").acceso);
 
 //LOGIN DE USUARIO
-route.post("/ingreso", require("../src/ingreso").postIngreso);
+route.post("/login", require("../src/ingreso").postIngreso);
 
 //RUTAS PROTEGIDAS CON TOKEN:
 route.get(
-  "/actividades",
+  "/activities",
   validatoken.verificaToken,
   require("../src/actividades").postActividades
 );
 
 //REGISTRO DE USUARIO
 route.post(
-  "/crearusuario",
+  "/adduser",
   validatoken.verificaToken,
   require("../src/crearUsuario").postRegistro
 );
 
 //CREACION DE ACTIVIDAD
 route.post(
-  "/crearactividad",
+  "/createactivity",
   validatoken.verificaToken,
   require("../src/crearActividad").postActividad
 );
 
+//rutas pendientes
+// addpayments
+//
 module.exports = route;
