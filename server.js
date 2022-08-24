@@ -8,6 +8,9 @@ const DBSChosen = process.argv[2] || "mongo";
 const DBS = Factory.getInstance(DBSChosen);
 DBS.connection(DBSChosen);
 
-app.listen(PORT, () => {
+
+const SERVER = app.listen(PORT, () => {
   console.log(`Funcionando en http://localhost:${PORT}`);
 });
+
+SERVER.on("Error", (error) => console.log("error en servidor ${error}"));

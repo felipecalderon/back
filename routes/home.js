@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const route = express.Router();
+
+const route = express();
 
 //Validadores (middlewares)
 const validatoken = require("../middlewares/validatoken");
@@ -10,11 +11,17 @@ route.use(express.json());
 route.use(express.urlencoded({ extended: true }));
 
 // HOME (Pagina principal)
-// route.get("/", require("../controllers/home").gethome);
+route.get("/", require("../src/controllers/home").gethome);
 
-const controler = require("../src/controllers/home")
+// const controler = require("../src/controllers/home")
+// try {
+//     route.get("/", controler);
+route.get("/", (req,res)=>{
 
-route.get("/", controler.gethome);
+    res.send("hola")
+});
+
+
 
 // rutas pendientes
 // addpayments
