@@ -11,14 +11,14 @@ route.use(express.urlencoded({ extended: true }));
 
 //LISTAR ACTIVIDADES:
 route.get(
-  "/get",
+  "/",
   validatoken.verificaToken,
   require("../controllers/activity").allActivity
 );
 
 // FILTRAR ACTIVIDADES:
 route.get(
-  "/get/:nombre",
+  "/:nombre",
   validatoken.verificaToken,
   require("../controllers/activity").singleActivity
 );

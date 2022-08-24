@@ -31,11 +31,11 @@ Rutas de ACCESO:
 
 Rutas internas necesarias con TOKEN:
 /adduser
+/activity/
+/activity/:nombre
 /activity/add
 /activity/update
 /activity/delete
-/activity/get
-/activity/get/:nombre
 
 PARA REGISTRARSE NECESITAMOS la aplicacion requerira del Front UN OBJETO con al siguiente estructura:
 {
