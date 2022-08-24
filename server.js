@@ -13,7 +13,7 @@ require("./dbconnection");
 app.use(require("./routes/home"));
 
 //Actividades
-app.use(require("./routes/activity"));
+app.use("/activity", require("./routes/activity"));
 
 //Acceso usuario
 app.use(require("./routes/login"));

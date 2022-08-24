@@ -9,18 +9,38 @@ route.use(cors());
 route.use(express.json());
 route.use(express.urlencoded({ extended: true }));
 
+//LISTAR ACTIVIDADES:
+route.get(
+  "/get",
+  validatoken.verificaToken,
+  require("../controllers/activity").allActivity
+);
+
+// FILTRAR ACTIVIDADES:
+route.get(
+  "/get/:nombre",
+  validatoken.verificaToken,
+  require("../controllers/activity").singleActivity
+);
+
 //CREACION DE ACTIVIDAD
 route.post(
-  "/addactivity",
+  "/add",
   validatoken.verificaToken,
-  require("../controllers/activity").postActivity
+  require("../controllers/activity").createActivity
 );
 
-//RUTAS PROTEGIDAS CON TOKEN:
-route.get(
-  "/activities",
+//ACTUALIZACION DE ACTIVIDAD
+route.put(
+  "/update",
   validatoken.verificaToken,
-  require("../controllers/activity").getActivity
+  require("../controllers/activity").updateActivity
 );
 
+//ELIMINA ACTIVIDAD
+route.delete(
+  "/delete",
+  validatoken.verificaToken,
+  require("../controllers/activity").deleteActivity
+);
 module.exports = route;

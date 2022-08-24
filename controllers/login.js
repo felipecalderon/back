@@ -40,10 +40,7 @@ exports.postIngreso = async (req, res) => {
         );
 
         // envío del token al header
-        res.status(200).append("auth-token", token).json({
-          url: "/actividades",
-          token: token,
-        });
+        res.status(200).append("auth-token", token).json({ token });
 
         // callback con la respuesta negativa en caso que las claves no coincidan
       } else {
