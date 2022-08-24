@@ -6,8 +6,8 @@ let instance = null;
 
 
 class Factory {
-  constructor(data) {
-    this.data = data;
+  constructor() {
+
   }
   static getInstance(data) {
     if (!instance) {
