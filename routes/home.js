@@ -10,7 +10,11 @@ route.use(express.json());
 route.use(express.urlencoded({ extended: true }));
 
 // HOME (Pagina principal)
-route.get("/", require("../controllers/home").gethome);
+// route.get("/", require("../controllers/home").gethome);
+
+const controler = require("../src/controllers/home")
+
+route.get("/", controler.gethome);
 
 // rutas pendientes
 // addpayments

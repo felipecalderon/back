@@ -1,14 +1,12 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 require("dotenv").config();
 
-const MONGO_URI = process.env.MONGO_URI;
+// const MONGO_URI = process.env.MONGO_URI;
+const MONGO_URI = `mongodb+srv://${process.env.MONGO_USR}:${process.env.MONGO_PWR}@${process.env.MONGO_CLOUD}/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
 let instance = null;
 
-
 class Factory {
-  constructor() {
-
-  }
+  constructor() {}
   static getInstance(data) {
     if (!instance) {
       instance = new Factory();
