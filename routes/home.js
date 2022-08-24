@@ -13,15 +13,6 @@ route.use(express.urlencoded({ extended: true }));
 // HOME (Pagina principal)
 route.get("/", require("../src/controllers/home").gethome);
 
-// const controler = require("../src/controllers/home")
-// try {
-//     route.get("/", controler);
-route.get("/", (req,res)=>{
-
-    res.send("hola")
-});
-
-
 
 // rutas pendientes
 // addpayments
