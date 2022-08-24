@@ -1,6 +1,7 @@
 const Actividad = require("../models/activity");
 
-exports.postActividades = (req, res) => {
+//Activity GET
+exports.getActivity = (req, res) => {
   res.status(200).json({
     error: null,
     data: {
@@ -9,8 +10,9 @@ exports.postActividades = (req, res) => {
     },
   });
 };
-//Constrolador del registro de alumnos en mongo
-exports.postActividad = async (req, res) => {
+
+//Activity POST
+exports.postActivity = async (req, res) => {
   // verifica si la actividad existe
   const actividadExiste = await Actividad.findOne({ nombre: req.body.nombre });
   if (actividadExiste) {

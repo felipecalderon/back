@@ -1,4 +1,4 @@
-exports.home = (req, res) => {
+exports.gethome = (req, res) => {
   res.json({
     rutas: [
       {

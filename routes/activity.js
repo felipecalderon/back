@@ -13,14 +13,14 @@ route.use(express.urlencoded({ extended: true }));
 route.post(
   "/addactivity",
   validatoken.verificaToken,
-  require("../controllers/activity").postActividad
+  require("../controllers/activity").postActivity
 );
 
 //RUTAS PROTEGIDAS CON TOKEN:
 route.get(
   "/activities",
   validatoken.verificaToken,
-  require("../controllers/activity").postActividades
+  require("../controllers/activity").getActivity
 );
 
 module.exports = route;

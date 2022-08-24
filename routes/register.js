@@ -13,7 +13,7 @@ route.use(express.urlencoded({ extended: true }));
 route.post(
   "/adduser",
   validatoken.verificaToken,
-  require("../src/register").postRegistro
+  require("../controllers/register").postRegistro
 );
 
 module.exports = route;

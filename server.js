@@ -19,7 +19,7 @@ app.use(require("./routes/activity"));
 app.use(require("./routes/login"));
 
 //Registro de usuario
-app.use(require("./routes/login"));
+app.use(require("./routes/register"));
 
 //---------------------------------Activacion server
 
