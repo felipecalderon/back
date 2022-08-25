@@ -8,8 +8,10 @@ const Factory = require("./utils/factory");
 const DBSChosen = process.argv[2] || "mongo";
 const DBS = Factory.getInstance(DBSChosen);
 DBS.connection(DBSChosen);
+
 const routes = new Routes()
 app.use(routes.start())
+
 const SERVER = app.listen(PORT, () => {
   console.log(`Funcionando en http://localhost:${PORT}`);
 });
