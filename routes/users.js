@@ -9,11 +9,16 @@ route.use(cors());
 route.use(express.json());
 route.use(express.urlencoded({ extended: true }));
 
-//REGISTRO DE USUARIO
-route.post(
+route.get(
   "/",
   validatoken.verificaToken,
-  require("../controllers/register").postRegistro
+  require("../controllers/users").getusers
+);
+
+route.get(
+  "/:id",
+  validatoken.verificaToken,
+  require("../controllers/users").getusersParams
 );
 
 module.exports = route;
