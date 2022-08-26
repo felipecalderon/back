@@ -38,8 +38,7 @@ const usuarioSchema = new mongoose.Schema(
     },
   },
   {
-    collection: "users",
-    timestamps: { createdAt: "created", updatedAt: "updated" },
+    timestamps: { created: "created", updated: "updated" },
   }
 );
 
