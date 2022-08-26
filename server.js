@@ -16,10 +16,10 @@ app.use(require("./routes/home"));
 app.use("/activity", require("./routes/activity"));
 
 //Acceso usuario
-app.use(require("./routes/login"));
+app.use("/auth/login", require("./routes/auth"));
 
 //Registro de usuario
-app.use(require("./routes/register"));
+app.use("/auth/register", require("./routes/auth"));
 
 //---------------------------------Activacion server
 

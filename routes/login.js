@@ -10,6 +10,6 @@ route.use(express.json());
 route.use(express.urlencoded({ extended: true }));
 
 //LOGIN DE USUARIO
-route.post("/login", require("../controllers/login").postIngreso);
+route.post("/", require("../controllers/login").postIngreso);
 
 module.exports = route;

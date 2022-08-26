@@ -32,8 +32,10 @@ exports.postIngreso = async (req, res) => {
             id: usernameExiste._id,
             email: usernameExiste.email,
             nombre: usernameExiste.nombre,
-            //token expira en 4 horas:
-            exp: Math.floor(Date.now() / 1000) + 60 * 60 * 4,
+            apellido: usernameExiste.apellido,
+            rol: usernameExiste.rol,
+            //token expira en 12 horas:
+            exp: Math.floor(Date.now() / 1000) + 60 * 60 * 12,
           },
           //agregada variable de entorno
           process.env.TOKENSECRETO
