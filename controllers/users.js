@@ -2,25 +2,35 @@ const Usuario = require("../models/user");
 
 exports.getusers = async (req, res) => {
   try {
-    const Usuarios = await Usuario.find();
-    res.status(200).json({ Usuarios });
+    if (req.query.nombre) {
+      const buscarNombre = await Usuario.findOne({ nombre: req.query.nombre });
+      if (buscarNombre != null) {
+        return res.status(200).json({ Usuario: buscarNombre });
+      } else {
+        return res.status(401).json({
+          error: "Usuario no encontrado",
+        });
+      }
+    } else {
+      const buscarTodos = await Usuario.find();
+      return res.status(200).json({ Usuarios: buscarTodos });
+    }
   } catch (error) {
-    res.status(401).json({
-      error: "Usuario no encontrado",
-    });
+    res.status(401).send(error);
   }
 };
 
 exports.getusersParams = async (req, res) => {
   try {
     const buscarId = await Usuario.findById(req.params.id);
-    const buscarNombre = await Usuario.findById(req.query.nombre);
-    console.log(buscarId);
-
-    res.status(200).json({ Usuarios: buscarId });
+    if (buscarId != null) {
+      return res.status(200).json({ Usuario: buscarId });
+    } else {
+      return res.status(401).json({
+        error: "Usuario no encontrado",
+      });
+    }
   } catch (error) {
-    res.status(401).json({
-      error: "Usuario no encontrado",
-    });
+    res.status(401).send(error);
   }
 };
