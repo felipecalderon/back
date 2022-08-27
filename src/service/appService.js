@@ -35,10 +35,16 @@ class App {
 
   readTodos = async () => {
     const todos = await Usuario.find({});
-    // console.log(todos);
-
     return todos;
   };
+
+  async updatePagos(nombre, fechaNueva) {
+    const pagos = await Usuario.updateOne(
+      { nombre: nombre },
+      { $set: { fechaDePago: fechaNueva } }
+    );
+    return pagos;
+  }
 }
 
 module.exports = App;

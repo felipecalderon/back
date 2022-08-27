@@ -1,6 +1,8 @@
 const Usuario = require("../../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const moment = require("moment");
+moment.locale("es");
 
 const App = require("../service/appService");
 const Pagos = require("../../utils/pago");
@@ -50,7 +52,7 @@ class ControllerAdm {
 
   getAlumns = async (req, res) => {
     // LEER TODOS LOS USUARIOS
-    // let alumnosTodos= await this.app.readTodos()
+    let alumnosTodos = await this.app.readTodos();
 
     // ACA SE SELECCIONA EL POST A REALIZAR:
     // VER UN ALUMNO EN PARTICULAR-> POST  /alumn
@@ -65,41 +67,27 @@ class ControllerAdm {
   };
 
   postAlumn = async (req, res) => {
-    // VER A UN ALUMNO EN PARTICULAR
+    // ALUMNO BUSCADO:
     let usuarioBuscado = await this.app.buscarUsuario(req.body.email);
-
-    // // VER FECHA DE PAGO:
-    // let fechaDePago = await this.pagos.searchById(usuarioBuscado.IdDelPago);
-
-    // // VER ID DE PAGO:
-    let id = await this.pagos.searchID(usuarioBuscado.IdDelPago);
-
-
-    // ACTUALIZAR UN PAGO:
-    // ACA SE SELECCIONA EL POST A /paymentUpdate para
-    // let editaPago = await this.pagos.update(id, req.body.pagoNuevo);
+    let fechaDePago = usuarioBuscado.fechaDePago
     try {
-      res.status(200).json(usuarioBuscado);
+      res.status(200).json(usuarioBuscado, fechaDePago);
     } catch (error) {
       res.status(401).json({
-        error: "Error al obtener la actividad del alumnos",
+        error: "Error: alumno no encontrado",
       });
     }
   };
 
   paymentUpdate = async (req, res) => {
-    // ACTUALIZACION DE PAGO DEL ALUMNOS
-    // let todoslosPagos = await this.Pagos.read();
-
-    // const idEJEMPLO = "63076e2e2664a336cf88c260";
-    // let search = await this.Pagos.searchById(iidEJEMPLO);
-
-    // let nuevoPago = await this.Pagos.create( req.body.fechaDePago)
-
-    // let editaPago = await this.Pagos.update( id, req.body.fechaDePago)
+    let usuarioBuscado = await this.app.buscarUsuario(req.body.email);
+    let pagoActualizado = await this.app.updatePagos(
+      usuarioBuscado.nombre,
+      moment().format("dddd DD MM YYYY hh:mm:ss")
+    );
 
     try {
-      res.status(200).json({ usuarioBuscado, fechaDePago });
+      res.status(200).json({usuarioBuscado, pagoActualizado });
     } catch (error) {
       res.status(401).json({
         error: "Error al obtener la actividad del alumnos",

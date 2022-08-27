@@ -2,14 +2,17 @@ const Usuario = require("../../models/user");
 const createHash = require("../../utils/hasGenerator");
 const Pago = require('../../utils/pago.js')
 const IdPago = new Pago()
+const moment = require('moment');
+moment.locale('es')
+
+
 
 //Constrolador del registro de alumnos en mongo
 exports.postRegistro = async (req, res) => {
   // verifica si el correo existe
-  console.log("ACTIVA REGISTRO");
+
   const emailExiste = await Usuario.findOne({ email: req.body.email });
-  if (emailExiste) {
-    console.log(emailExiste);
+  if (emailExiste) {   
     return res.status(400).json({
       error: "correo ya registrado",
     });
@@ -25,7 +28,8 @@ exports.postRegistro = async (req, res) => {
     password: createHash(req.body.password),
     username: req.body.username,
     // CREA UN PAGO NUEVO Y ME DEVUELVE SU ID
-    IdDelPago: await IdPago.IdPago()
+    // IdDelPago: await IdPago.IdPago()
+    fechaDePago: moment().format('dddd DD MM YYYY hh:mm:ss')
   
   });
 
