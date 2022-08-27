@@ -8,6 +8,7 @@ exports.postIngreso = async (req, res) => {
   const usernameExiste = await Usuario.findOne({
     $or: [{ email: req.body.email }, { username: req.body.email }],
   });
+
   if (!usernameExiste) {
     return res.status(401).json({
       error: "Usuario o correo incorrecto",

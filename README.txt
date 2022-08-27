@@ -59,3 +59,57 @@ CON LA CONTRASENA ENCRIPTADA Y EL MISMO MONGO AGREGA UN ID. COMO EL SIGUIENTE:
   password: '$2b$10$Q6mGK/Vckr/DGD6AzDdlFeye0igBBF0MZrMdBPECCCuTTQzmu/j1q',
   __v: 0
 }
+
+DOCUMENTACION ALUMNOS
+RUTA -> METODO: GET/alumns
+La ruta usa this.controler.getAlumns
+
+metodos: 
+ 1- Obtener todos los Usuarios: this.app.readTodos()
+	EJEMPLO EN CODIGO: let alumnosTodos= await this.app.readTodos()
+	Este me devuelve todos los usuarios que se encuentran registrados con el siguiente formato:
+		{"_id":"6309dd619c57f80eb38fac0c",
+		"nombre":"diego",
+		"apellido":"dimitroff",
+		"direccion":"barrio",
+		"telefono":"129831",
+		"username":"dimi",
+		"rol":"adm",
+		"email":"diego@gmail.com",
+		"password":"$2b$10$TBy2kzatbT.Hdvz44Ahr2uzqRcWH0k0802uOiq7pC7NAw7/ynf6HC",
+		"IdDelPago":"6309dd619c57f80eb38fac0a",
+		"created":"2022-08-27T09:01:21.911Z",
+		"updated":"2022-08-27T09:01:21.911Z",
+		"__v":0}
+	Observese que el usuario cuenta con un "IdDelPago", el cual podra ser utilizado con el metodo search para poder obtener su ifo de pago
+2- 
+
+RUTA -> METODO: POST/alumn
+El metodo post de este endPoint nos devuelve: La busqueda de un alumno la info particular de un usuario, la fecha de su pago y la actualizacion de su pago
+
+ 1- Obtener info de un usuario en particular: this.app.buscarUsuario(data)
+	EJEMPLO EN CODIGO: let usuarioBuscado= await this.app.buscarUsuario(req.body.username)
+			   let usuarioBuscado= await this.app.buscarUsuario(req.body.email)
+	usuarioBuscado: Este me devuelve todos los usuarios que se encuentran registrados con el siguiente formato:
+		{"_id":"6309dd619c57f80eb38fac0c",
+		"nombre":"diego",
+		"apellido":"dimitroff",
+		"direccion":"barrio",
+		"telefono":"129831",
+		"username":"dimi",
+		"rol":"adm",
+		"email":"diego@gmail.com",
+		"password":"$2b$10$TBy2kzatbT.Hdvz44Ahr2uzqRcWH0k0802uOiq7pC7NAw7/ynf6HC",
+		"IdDelPago":"6309dd619c57f80eb38fac0a",
+		"created":"2022-08-27T09:01:21.911Z",
+		"updated":"2022-08-27T09:01:21.911Z",
+		"__v":0}
+		Enviando el username o el email del usuario buscado se podra encontrar de manera exitosa al mismo
+	fechaDePago: Este me devuelve FECHA del pago el siguiente formato:
+		[ { fechaDePago: 2022-08-27T09:01:21.624Z } ]
+
+RUTA -> METODO: POST/paymentUpdate
+El metodo post de este endPoint nos devuelve: La info del Usuario que actualizo su pago y su fecha
+
+ 1- Para actualizar el pago: this.pagos.update(id, req.body.pagoNuevo)
+	Es metodo de manera automatica actualiza la fecha ESTOY TRABAJANDO EN ELLO TODAVIA

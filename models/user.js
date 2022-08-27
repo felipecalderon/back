@@ -36,6 +36,8 @@ const usuarioSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    // FECHA DE PAGO RECIBE EL ID DEL MODELO PAYMENT
+    IdDelPago: { type: String, required: true },
   },
   {
     collection: "users",
