@@ -21,6 +21,11 @@ app.use("/auth", require("./routes/auth"));
 //Listado usuarios
 app.use("/users", require("./routes/users"));
 
+//RUTA 404
+app.get("*", function (req, res) {
+  res.status(404).json({ error: "ruta no encontrada" });
+});
+
 //---------------------------------Activacion server
 
 //Servidor a la escucha

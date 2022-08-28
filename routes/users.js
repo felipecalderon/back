@@ -21,4 +21,10 @@ route.get(
   require("../controllers/users").getusersParams
 );
 
+route.put(
+  "/update",
+  validatoken.verificaToken,
+  require("../controllers/users").updateUsers
+);
+
 module.exports = route;
