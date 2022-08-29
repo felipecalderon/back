@@ -12,19 +12,19 @@ route.use(express.urlencoded({ extended: true }));
 route.get(
   "/",
   validatoken.verificaToken,
-  require("../controllers/users").getusers
+  require("../src/controllers/users").getusers
 );
 
 route.get(
   "/:id",
   validatoken.verificaToken,
-  require("../controllers/users").getusersParams
+  require("../src/controllers/users").getusersParams
 );
 
 route.put(
   "/update",
   validatoken.verificaToken,
-  require("../controllers/users").updateUsers
+  require("../src/controllers/users").updateUsers
 );
 
 module.exports = route;

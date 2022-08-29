@@ -1,7 +1,7 @@
 const Usuario = require("../../models/user");
 const createHash = require("../../utils/hasGenerator");
-const Pago = require('../../utils/pago.js')
-const IdPago = new Pago()
+
+
 const moment = require('moment');
 moment.locale('es')
 

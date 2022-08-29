@@ -5,7 +5,7 @@ const moment = require("moment");
 moment.locale("es");
 
 const App = require("../service/appService");
-const Pagos = require("../../utils/pago");
+
 
 class ControllerAdm {
   constructor() {

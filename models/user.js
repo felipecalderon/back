@@ -40,12 +40,10 @@ const usuarioSchema = new mongoose.Schema(
     fechaDePago: { type: String, required: true },
   },
   {
-<<<<<<< HEAD
-    timestamps: { created: "created", updated: "updated" },
-=======
-    collection: "usuarios",
+
+  
     timestamps: { createdAt: "created", updatedAt: "updated" },
->>>>>>> Diego
+
   }
 );
 

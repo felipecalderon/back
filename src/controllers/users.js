@@ -1,4 +1,4 @@
-const Usuario = require("../models/user");
+const Usuario = require("../../models/user");
 const jwt_decode = require("jwt-decode");
 
 exports.getusers = async (req, res) => {

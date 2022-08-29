@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-// <<<<<<< HEAD
-
 // const app = require("./rutas/login");
 // const PORT = process.env.PORT || 3000;
 // const Factory = require("./utils/factory");
@@ -21,23 +18,23 @@
 //---------------------------------Config Inicial
 console.clear();
 require("dotenv").config();
-const express = require("express");
-const app = express();
-const PORT = process.env.PORT || 3000;
+// const express = require("express");
+// const app = express();
+// const PORT = process.env.PORT || 3000;
 
 //Conexion a mongodb
 require("./dbconnection");
 
 //---------------------------------Rutas
 //Home
-app.use(require("./routes/home"));
+// app.use(require("./routes/home"));
 // =======
-// const express = require('express');
+const express = require('express');
 
-// const app = express()
-// const Routes = require('./routes/routes')
-// const PORT = process.env.PORT || 3000;
-// const Factory = require("./utils/factory");
+const app = express()
+const Routes = require('./routes/routes')
+const PORT = process.env.PORT || 3000;
+const Factory = require("./utils/factory");
 // >>>>>>> Diego
 
 const DBSChosen = process.argv[2] || "mongo";
@@ -60,7 +57,7 @@ app.get("*", function (req, res) {
 
 //Servidor a la escucha
 
-app.listen(PORT, () => {
+const SERVER = app.listen(PORT, () => {
 // =======
 // const routes = new Routes()
 // app.use(routes.start())

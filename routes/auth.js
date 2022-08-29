@@ -10,12 +10,12 @@ route.use(express.json());
 route.use(express.urlencoded({ extended: true }));
 
 //LOGIN DE USUARIO
-route.post("/login", require("../controllers/login").postIngreso);
+route.post("/login", require("../src/controllers/login").postIngreso);
 
 //REGISTRO DE USUARIO
 route.post(
   "/register",
   validatoken.verificaToken,
-  require("../controllers/register").postRegistro
+  require("../src/controllers/register").postRegistro
 );
 module.exports = route;
