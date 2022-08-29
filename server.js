@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // <<<<<<< HEAD
 
 // const app = require("./rutas/login");
@@ -16,7 +17,7 @@
 
 
 //Puerto
-// =======
+
 //---------------------------------Config Inicial
 console.clear();
 require("dotenv").config();
@@ -30,9 +31,19 @@ require("./dbconnection");
 //---------------------------------Rutas
 //Home
 app.use(require("./routes/home"));
+// =======
+// const express = require('express');
 
-//Actividades
-app.use("/activity", require("./routes/activity"));
+// const app = express()
+// const Routes = require('./routes/routes')
+// const PORT = process.env.PORT || 3000;
+// const Factory = require("./utils/factory");
+// >>>>>>> Diego
+
+const DBSChosen = process.argv[2] || "mongo";
+const DBS = Factory.getInstance(DBSChosen);
+DBS.connection(DBSChosen);
+
 
 //Acceso usuario
 app.use("/auth", require("./routes/auth"));
@@ -50,5 +61,13 @@ app.get("*", function (req, res) {
 //Servidor a la escucha
 
 app.listen(PORT, () => {
+// =======
+// const routes = new Routes()
+// app.use(routes.start())
+
+// const SERVER = app.listen(PORT, () => {
+// >>>>>>> Diego
   console.log(`Funcionando en http://localhost:${PORT}`);
 });
+
+SERVER.on("Error", (error) => console.log("error en servidor ${error}"));

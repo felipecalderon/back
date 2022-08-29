@@ -2,7 +2,9 @@ DOCUMENTACION:
 
 BACKEND:
 Arquitectura utilizada: La app se compone de un server.js que va a tener la funcionalidad de leer el puerto
-el cual va a ser, por defecto el 3000 (en caso de agregarse uno diferente mediante variable global).
+
+el cual va a ser, por defecto el 3000 (en caso de agregarse uno diferente mediante variable de entorno).
+
  Entre otras cosas la arquitectura esta prediseña con el objetivo de ser escalable en su DBS, pudiendo
 agregare cuanta base de datos se requiera mediante un metodo que se encontrara en la clase Factory en el
 factory.js. Esta funcionalidad se dará mediante parametro agregado al arrancar la applicacion: actualmente los
@@ -59,3 +61,67 @@ CON LA CONTRASENA ENCRIPTADA Y EL MISMO MONGO AGREGA UN ID. COMO EL SIGUIENTE:
   password: '$2b$10$Q6mGK/Vckr/DGD6AzDdlFeye0igBBF0MZrMdBPECCCuTTQzmu/j1q',
   __v: 0
 }
+
+
+DOCUMENTACION ALUMNOS: 
+Tres endPoint para obtener todos los usuarios registrados, para poder buscar un alumno en particular y ver cuando pago; y un 
+ultimo end point para actualizar el pago:
+
+
+
+RUTA -> METODO: GET/alumns
+res.status(200).json(alumnosTodos);
+Este me devuelve todos los usuarios que se encuentran registrados con el siguiente formato:
+		{"_id":"6309dd619c57f80eb38fac0c",
+		"nombre":"diego",
+		"apellido":"dimitroff",
+		"direccion":"barrio",
+		"telefono":"129831",
+		"username":"dimi",
+		"rol":"adm",
+		"email":"diego@gmail.com",
+		"password":"$2b$10$TBy2kzatbT.Hdvz44Ahr2uzqRcWH0k0802uOiq7pC7NAw7/ynf6HC",
+		"fechaDePago:"sábado 27 08 2022 12:02:57",
+		"created":"2022-08-27T09:01:21.911Z",
+		"updated":"2022-08-27T09:01:21.911Z",
+		"__v":0}
+
+RUTA -> METODO: POST/alumn
+ATENCION: RUTA ALUMN (singular... no como la anterior que es plural:"alumns")
+res.status(200).json(usuarioBuscado, fechaDePago);
+usuarioBuscado: Este me devuelve el usuario en particular con REQ.BODY.EMAIL en el siguiente formato:
+		{"_id":"6309dd619c57f80eb38fac0c",
+		"nombre":"diego",
+		"apellido":"dimitroff",
+		"direccion":"barrio",
+		"telefono":"129831",
+		"username":"dimi",
+		"rol":"adm",
+		"email":"diego@gmail.com",
+		"password":"$2b$10$TBy2kzatbT.Hdvz44Ahr2uzqRcWH0k0802uOiq7pC7NAw7/ynf6HC",
+		"fechaDePago:"sábado 27 08 2022 12:02:57",
+		"created":"2022-08-27T09:01:21.911Z",
+		"updated":"2022-08-27T09:01:21.911Z",
+		"__v":0}
+fechaDePago: Este me devuelve la fecha del ultimo pago hecho por la persona buscada en el siguiente formato:
+		"fechaDePago:"sábado 27 08 2022 12:02:57"
+
+RUTA -> METODO: POST/paymentUpdate
+Enviando el e-mail del usuario  (REQ.BODY.EMAIL) este me responde:
+res.status(200).json(usuarioBuscado, pagoActualizado)
+usuarioBuscado: Este me devuelve el usuario en particular en el siguiente formato:
+		{"_id":"6309dd619c57f80eb38fac0c",
+		"nombre":"diego",
+		"apellido":"dimitroff",
+		"direccion":"barrio",
+		"telefono":"129831",
+		"username":"dimi",
+		"rol":"adm",
+		"email":"diego@gmail.com",
+		"password":"$2b$10$TBy2kzatbT.Hdvz44Ahr2uzqRcWH0k0802uOiq7pC7NAw7/ynf6HC",
+		"fechaDePago:"sábado 27 08 2022 12:02:57",
+		"created":"2022-08-27T09:01:21.911Z",
+		"updated":"2022-08-27T09:01:21.911Z",
+		"__v":0}
+pagoActualizado: Este me actualiza la fecha del ultimo pago hecho por la persona buscada en el siguiente formato:
+		"fechaDePago:"sábado 27 08 2022 12:02:57"
