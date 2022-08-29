@@ -24,6 +24,7 @@ exports.getusers = async (req, res) => {
 exports.getusersParams = async (req, res) => {
   try {
     const buscarId = await Usuario.findById(req.params.id);
+    // console.log(req.params.id);
     if (buscarId != null) {
       return res.status(200).json({ Usuario: buscarId });
     } else {

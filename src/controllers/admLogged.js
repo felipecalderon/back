@@ -10,11 +10,12 @@ const App = require("../service/appService");
 class ControllerAdm {
   constructor() {
     this.app = new App();
-    this.pagos = new Pagos();
+   
   }
   admLogged = async (req, res) => {
     // Primero buscamos si el correo coincide con la data en mongo
-    let usernameExiste = await this.App.usernameExiste(req.body.email);
+    
+    let usernameExiste = await this.app.usernameExiste(req.body.email);
     bcrypt.compare(
       req.body.password,
       usernameExiste.password,
@@ -69,9 +70,11 @@ class ControllerAdm {
   postAlumn = async (req, res) => {
     // ALUMNO BUSCADO:
     let usuarioBuscado = await this.app.buscarUsuario(req.body.email);
+    
     let fechaDePago = usuarioBuscado.fechaDePago
+    console.log(fechaDePago);
     try {
-      res.status(200).json(usuarioBuscado, fechaDePago);
+      res.status(200).json({usuarioBuscado, fechaDePago});
     } catch (error) {
       res.status(401).json({
         error: "Error: alumno no encontrado",
@@ -80,6 +83,7 @@ class ControllerAdm {
   };
 
   paymentUpdate = async (req, res) => {
+    console.log(req.body.email);
     let usuarioBuscado = await this.app.buscarUsuario(req.body.email);
     let pagoActualizado = await this.app.updatePagos(
       usuarioBuscado.nombre,

@@ -103,3 +103,17 @@ exports.deleteActivity = async (req, res) => {
     res.status(400).json(error);
   }
 };
+
+exports.addACtiviyIntoAlumn = async (data) => {
+  try {
+    const activitie = await Actividad.findOne({ nombre: data });
+    if (activitie === null) {
+      return `Actividad ${data} no encontrada`;
+    }
+    return activitie;
+  } catch (error) {
+    res.status(401).json({
+      error: "Error al consultar la BD",
+    });
+  }
+};

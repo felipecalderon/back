@@ -9,12 +9,20 @@ moment.locale('es')
 
 //Constrolador del registro de alumnos en mongo
 exports.postRegistro = async (req, res) => {
-  // verifica si el correo existe
+
+
+  const userNameExiste = await Usuario.findOne({ username: req.body.username });
+ 
+  if (userNameExiste) {   
+    return res.status(400).json({
+      error: "Username ya registrado",
+    });
+  }
 
   const emailExiste = await Usuario.findOne({ email: req.body.email });
   if (emailExiste) {   
     return res.status(400).json({
-      error: "correo ya registrado",
+      error: "Correo ya registrado",
     });
   }
   // crea usuario
@@ -27,8 +35,8 @@ exports.postRegistro = async (req, res) => {
     email: req.body.email,
     password: createHash(req.body.password),
     username: req.body.username,
-    // CREA UN PAGO NUEVO Y ME DEVUELVE SU ID
-    // IdDelPago: await IdPago.IdPago()
+    activity: await require('./activity').addACtiviyIntoAlumn(req.body.activity),
+
     fechaDePago: moment().format('dddd DD MM YYYY hh:mm:ss')
   
   });

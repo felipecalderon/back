@@ -36,15 +36,17 @@ const usuarioSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    activity: {
+      type: "Object",
+      required: true,
+    },
     // FECHA DE PAGO RECIBE EL ID DEL MODELO PAYMENT
     fechaDePago: { type: String, required: true },
   },
   {
-
-  
     timestamps: { createdAt: "created", updatedAt: "updated" },
+  },
 
-  }
 );
 
 module.exports = mongoose.model("Usuario", usuarioSchema);

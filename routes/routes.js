@@ -14,69 +14,85 @@ const controler = require("../src/controllers/admLogged");
 
 class Routes {
   constructor() {
- 
     this.controler = new controler();
+
   }
   start() {
     // HOME (Pagina principal)---------------------------------------------
     route.get("/", require("../src/controllers/home").gethome);
+
+    //LOGIN DE USUARIO-----------------------------------------------------
+    route.post("/login", require("../src/controllers/login").postIngreso);
+
     //REGISTRO DE USUARIO--------------------------------------------------
     route.post(
-      "/adduser",
+      "/register",
       // QUITO VALIDETON TOKEN POR QUE NO PODIA AGREGAR---> PREGUNTAR A FELIPE
       // validatoken.verificaToken,
       require("../src/controllers/register").postRegistro
     );
-    //LOGIN DE USUARIO-----------------------------------------------------
-    route.post("/login", require("../src/controllers/login").postIngreso);
+  
+    //LISTAR USUARIOS:---------------------------------------------------
+    route.get("/users", this.controler.getAlumns);
 
-    
-    // -----------------------------------------------------
-    // -----------------------------------------------------
-    //ADMINISTRADOR LOGEADO-----------------------------------------------------
-    
-    
-    route.post("/admLogged", this.controler.admLogged);
-    route.get("/alumns", this.controler.getAlumns);
-    route.post("/alumn", this.controler.postAlumn);
+    //BUSCAR USUARIO:----------------------------------------------------
+    route.post("/user", this.controler.postAlumn);
+
+    //ACTUALIZAR PAGO DE UN ALUMNO:--------------------------------------
     route.post("/paymentUpdate", this.controler.paymentUpdate);
 
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+    // route.get(
+    //   "/getusers",
+    //   // validatoken.verificaToken,
+    //   require("../src/controllers/users").getusers
+    // );
+    // route.get(
+    //   "/:id",
+    //   // validatoken.verificaToken,
+    //   require("../src/controllers/users").getusersParams
+    // );
 
-    // -----------------------------------------------------
-    // -----------------------------------------------------
+    // route.put(
+    //   "/update",
+    //   validatoken.verificaToken,
+    //   require("../src/controllers/users").updateUsers
+    // );
+
     //LISTAR ACTIVIDADES:---------------------------------------------------
     route.get(
-      "/",
-      validatoken.verificaToken,
+      "/activity",
+      // validatoken.verificaToken,
       require("../src/controllers/activity").allActivity
     );
     // FILTRAR ACTIVIDADES:-------------------------------------------------
     route.get(
-      "/:nombre",
-      validatoken.verificaToken,
+      "/activity/:nombre",
+      // validatoken.verificaToken,
       require("../src/controllers/activity").singleActivity
     );
     //CREACION DE ACTIVIDAD--------------------------------------------------
     route.post(
-      "/add",
-      validatoken.verificaToken,
+      "/activity/add",
+      // validatoken.verificaToken,
       require("../src/controllers/activity").createActivity
     );
     //ACTUALIZACION DE ACTIVIDAD---------------------------------------------
     route.put(
-      "/update",
+      "/activity/update",
       validatoken.verificaToken,
       require("../src/controllers/activity").updateActivity
     );
     //ELIMINA ACTIVIDAD-------------------------------------------------------
     route.delete(
-      "/delete",
+      "/activity/delete",
       validatoken.verificaToken,
       require("../src/controllers/activity").deleteActivity
     );
-    //PAGINA NO ENCONTRADA-------------------------------------------------------
-    route.get("*", (req, res) => {
-      res.status(404).render("error", {});
+    //RUTA 404
+    route.get("*", function (req, res) {
+      res.status(404).json({ error: " 404 ruta no encontrada" });
     });
 
     return route;

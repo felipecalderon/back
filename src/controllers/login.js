@@ -2,25 +2,19 @@ const Usuario = require("../../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-
+const App = require("../service/appService");
+const app = new App();
 //Controlador del login
+
 exports.postIngreso = async (req, res) => {
-  
   // Primero buscamos si el correo coincide con la data en mongo
-try{  let usernameExiste = await Usuario.findOne({
-    $or: [{ email: req.body.email }, { username: req.body.email }],
-  });
+  let usernameExiste = await app.usernameExiste(req.body.email ||req.body.username);
 
   if (!usernameExiste) {
     return res.status(401).json({
       error: "Usuario o correo incorrecto",
-    });
-  }}catch(error){
-    console.log("EL ERROR ES");
-    console.log(error);
-  }
+    });}
 
-  // Verificación de contraseña y creación de token si usuario esta correcto
   bcrypt.compare(
     req.body.password,
     usernameExiste.password,
@@ -38,10 +32,8 @@ try{  let usernameExiste = await Usuario.findOne({
             id: usernameExiste._id,
             email: usernameExiste.email,
             nombre: usernameExiste.nombre,
-            apellido: usernameExiste.apellido,
-            rol: usernameExiste.rol,
-            //token expira en 12 horas:
-            exp: Math.floor(Date.now() / 1000) + 60 * 60 * 12,
+            //token expira en 4 horas:
+            exp: Math.floor(Date.now() / 1000) + 60 * 60 * 4,
           },
           //agregada variable de entorno
           process.env.TOKENSECRETO
