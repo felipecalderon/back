@@ -1,4 +1,4 @@
-const Usuario = require("../modelos/usuario");
+const Usuario = require("../models/user");
 const createHash = require("../utils/hasGenerator");
 
 //Constrolador del registro de alumnos en mongo

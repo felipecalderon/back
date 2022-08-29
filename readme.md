@@ -25,16 +25,17 @@ Rutas: Las rutas PUBLICAS seran:
 /ubicacion
 
 Rutas de ACCESO:
-/ingreso
-/registro
+/login
+/adduser
 
 
 Rutas internas necesarias con TOKEN:
-/crearusuario
-/crearactividad
-/pagos
-/usuarios
-/actividades
+/adduser
+/activity/
+/activity/:nombre
+/activity/add
+/activity/update
+/activity/delete
 
 PARA REGISTRARSE NECESITAMOS la aplicacion requerira del Front UN OBJETO con al siguiente estructura:
 {

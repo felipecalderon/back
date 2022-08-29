@@ -1,4 +1,4 @@
-const Usuario = require("../modelos/usuario");
+const Usuario = require("../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -36,18 +36,19 @@ try{  let usernameExiste = await Usuario.findOne({
         const token = jwt.sign(
           {
             id: usernameExiste._id,
-            //token expira en 5 minutos:
-            exp: Math.floor(Date.now() / 1000) + 60 * 5,
+            email: usernameExiste.email,
+            nombre: usernameExiste.nombre,
+            apellido: usernameExiste.apellido,
+            rol: usernameExiste.rol,
+            //token expira en 12 horas:
+            exp: Math.floor(Date.now() / 1000) + 60 * 60 * 12,
           },
           //agregada variable de entorno
           process.env.TOKENSECRETO
         );
 
         // envío del token al header
-        res
-          .status(200)
-          .append("auth-token", token)
-          .redirect(200, "/actividades");
+        res.status(200).append("auth-token", token).json({ token });
 
         // callback con la respuesta negativa en caso que las claves no coincidan
       } else {
