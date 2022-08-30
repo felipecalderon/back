@@ -20,7 +20,7 @@ class App {
     try {
       // Primero buscamos si el correo coincide con la data en mongo
       const usernameExiste = await Usuario.findOne({
-        $or: [{ email: data }, { username: data }, { id: data }],
+        $or: [{ email: data }, { username: data }, { _id: data }],
       });
       return usernameExiste;
     } catch (error) {
