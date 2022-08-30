@@ -72,7 +72,7 @@ class ControllerAdm {
     let usuarioBuscado = await this.app.buscarUsuario(req.body.email);
     
     let fechaDePago = usuarioBuscado.fechaDePago
-    console.log(fechaDePago);
+
     try {
       res.status(200).json({usuarioBuscado, fechaDePago});
     } catch (error) {

@@ -39,7 +39,7 @@ class Routes {
     route.post("/user", this.controler.postAlumn);
 
     //ACTUALIZAR PAGO DE UN ALUMNO:--------------------------------------
-    route.post("/paymentUpdate", this.controler.paymentUpdate);
+    route.put("/paymentUpdate", this.controler.paymentUpdate);
 
     // -----------------------------------------------------
     // -----------------------------------------------------
@@ -81,13 +81,13 @@ class Routes {
     //ACTUALIZACION DE ACTIVIDAD---------------------------------------------
     route.put(
       "/activity/update",
-      validatoken.verificaToken,
+      // validatoken.verificaToken,
       require("../src/controllers/activity").updateActivity
     );
     //ELIMINA ACTIVIDAD-------------------------------------------------------
     route.delete(
       "/activity/delete",
-      validatoken.verificaToken,
+      // validatoken.verificaToken,
       require("../src/controllers/activity").deleteActivity
     );
     //RUTA 404
