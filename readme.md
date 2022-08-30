@@ -7,6 +7,7 @@ DOCUMENTACION:
 #Tecnologías:       ReactJs | NodeJs | MongoDB | NextJs  
 
 #Roles{             
+    
                     Backend: Diego Dimitroff 
 
                     Backend: Felipe Calderón 
