@@ -32,7 +32,7 @@ POST /register
 Rutas internas necesarias con TOKEN:
 GET /users
 POST /user
-POST /paymentUpdate
+PUT /paymentUpdate
 
 /activity/
 /activity/:nombre
