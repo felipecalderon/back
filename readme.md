@@ -1,5 +1,7 @@
 DOCUMENTACION:
 
+#Titulo del proyecto: Gym
+
 BACKEND:
 Arquitectura utilizada: La app se compone de un server.js que va a tener la funcionalidad de leer el puerto
 el cual va a ser, por defecto el 3000 (en caso de agregarse uno diferente mediante variable global).
