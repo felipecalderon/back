@@ -36,7 +36,7 @@ class Routes {
     //BUSCAR USUARIO:----------------------------------------------------
     route.post("/user", this.controler.postAlumn);
 
-    //BUSCAR USUARIO V2:----------------------------------------------------
+    //BUSCAR USUARIO V2.1:----------------------------------------------------
     route.get("/user/:id", this.controler.getAlumnsParams);
 
     //ACTUALIZAR PAGO DE UN ALUMNO:--------------------------------------
