@@ -7,14 +7,11 @@ DOCUMENTACION:
 #Tecnologías:       ReactJs | NodeJs | MongoDB | NextJs  
 
 #Roles{             
-    
-                    Backend: Diego Dimitroff 
 
-                    Backend: Felipe Calderón 
-
-                    Frontend: Martín Hernández 
-
-                    Frontend: Lucas Abdala
+    Backend: Diego Dimitroff 
+    Backend: Felipe Calderón 
+    Frontend: Martín Hernández 
+    Frontend: Lucas Abdala
 }
 
 #Deploy-Backend:    https://node-app-gym.herokuapp.com/ 
