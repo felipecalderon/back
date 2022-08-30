@@ -27,16 +27,17 @@ class Routes {
     //REGISTRO DE USUARIO--------------------------------------------------
     route.post(
       "/register",
-      // QUITO VALIDETON TOKEN POR QUE NO PODIA AGREGAR---> PREGUNTAR A FELIPE
-      // validatoken.verificaToken,
+      validatoken.verificaToken,
       require("../src/controllers/register").postRegistro
     );
   
     //LISTAR USUARIOS:---------------------------------------------------
-    route.get("/users", this.controler.getAlumns);
+    route.get("/users", 
+    validatoken.verificaToken,this.controler.getAlumns);
 
     //BUSCAR USUARIO:----------------------------------------------------
-    route.post("/user", this.controler.postAlumn);
+    route.post("/user",
+    validatoken.verificaToken, this.controler.postAlumn);
 
     //ACTUALIZAR PAGO DE UN ALUMNO:--------------------------------------
     route.put("/paymentUpdate", this.controler.paymentUpdate);
@@ -63,31 +64,31 @@ class Routes {
     //LISTAR ACTIVIDADES:---------------------------------------------------
     route.get(
       "/activity",
-      // validatoken.verificaToken,
+      validatoken.verificaToken,
       require("../src/controllers/activity").allActivity
     );
     // FILTRAR ACTIVIDADES:-------------------------------------------------
     route.get(
       "/activity/:nombre",
-      // validatoken.verificaToken,
+      validatoken.verificaToken,
       require("../src/controllers/activity").singleActivity
     );
     //CREACION DE ACTIVIDAD--------------------------------------------------
     route.post(
       "/activity/add",
-      // validatoken.verificaToken,
+      validatoken.verificaToken,
       require("../src/controllers/activity").createActivity
     );
     //ACTUALIZACION DE ACTIVIDAD---------------------------------------------
     route.put(
       "/activity/update",
-      // validatoken.verificaToken,
+      validatoken.verificaToken,
       require("../src/controllers/activity").updateActivity
     );
     //ELIMINA ACTIVIDAD-------------------------------------------------------
     route.delete(
       "/activity/delete",
-      // validatoken.verificaToken,
+      validatoken.verificaToken,
       require("../src/controllers/activity").deleteActivity
     );
     //RUTA 404
