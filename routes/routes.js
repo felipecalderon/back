@@ -11,11 +11,9 @@ const validatoken = require("../middlewares/validatoken");
 
 const controler = require("../src/controllers/admLogged");
 
-
 class Routes {
   constructor() {
     this.controler = new controler();
-
   }
   start() {
     // HOME (Pagina principal)---------------------------------------------
@@ -31,12 +29,15 @@ class Routes {
       // validatoken.verificaToken,
       require("../src/controllers/register").postRegistro
     );
-  
+
     //LISTAR USUARIOS:---------------------------------------------------
     route.get("/users", this.controler.getAlumns);
 
     //BUSCAR USUARIO:----------------------------------------------------
     route.post("/user", this.controler.postAlumn);
+
+    //BUSCAR USUARIO V2:----------------------------------------------------
+    route.get("/user/:id", this.controler.getAlumnsParams);
 
     //ACTUALIZAR PAGO DE UN ALUMNO:--------------------------------------
     route.post("/paymentUpdate", this.controler.paymentUpdate);

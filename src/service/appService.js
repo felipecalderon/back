@@ -1,6 +1,5 @@
 const Usuario = require("../../models/user");
 
-
 class App {
   constructor() {}
   // este metodo es usado por /Login para buscar coincidencias en MONGO
@@ -19,10 +18,9 @@ class App {
 
   buscarUsuario = async (data) => {
     try {
-   
       // Primero buscamos si el correo coincide con la data en mongo
       const usernameExiste = await Usuario.findOne({
-        $or: [{ email: data }, { username: data }],
+        $or: [{ email: data }, { username: data }, { id: data }],
       });
       return usernameExiste;
     } catch (error) {

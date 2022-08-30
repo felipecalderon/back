@@ -6,15 +6,13 @@ moment.locale("es");
 
 const App = require("../service/appService");
 
-
 class ControllerAdm {
   constructor() {
     this.app = new App();
-   
   }
   admLogged = async (req, res) => {
     // Primero buscamos si el correo coincide con la data en mongo
-    
+
     let usernameExiste = await this.app.usernameExiste(req.body.email);
     bcrypt.compare(
       req.body.password,
@@ -67,14 +65,30 @@ class ControllerAdm {
     }
   };
 
+  getAlumnsParams = async (req, res) => {
+    try {
+      const buscarId = await this.app.buscarUsuario(req.params.id);
+      // console.log(req.params.id);
+      if (buscarId != null) {
+        return res.status(200).json({ Usuario: buscarId });
+      } else {
+        return res.status(401).json({
+          error: "Usuario no encontrado",
+        });
+      }
+    } catch (error) {
+      res.status(401).send(error);
+    }
+  };
+
   postAlumn = async (req, res) => {
     // ALUMNO BUSCADO:
     let usuarioBuscado = await this.app.buscarUsuario(req.body.email);
-    
-    let fechaDePago = usuarioBuscado.fechaDePago
+
+    let fechaDePago = usuarioBuscado.fechaDePago;
     console.log(fechaDePago);
     try {
-      res.status(200).json({usuarioBuscado, fechaDePago});
+      res.status(200).json({ usuarioBuscado, fechaDePago });
     } catch (error) {
       res.status(401).json({
         error: "Error: alumno no encontrado",
@@ -91,7 +105,7 @@ class ControllerAdm {
     );
 
     try {
-      res.status(200).json({usuarioBuscado, pagoActualizado });
+      res.status(200).json({ usuarioBuscado, pagoActualizado });
     } catch (error) {
       res.status(401).json({
         error: "Error al obtener la actividad del alumnos",
