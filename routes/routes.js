@@ -25,22 +25,23 @@ class Routes {
     //REGISTRO DE USUARIO--------------------------------------------------
     route.post(
       "/register",
-      // QUITO VALIDETON TOKEN POR QUE NO PODIA AGREGAR---> PREGUNTAR A FELIPE
-      // validatoken.verificaToken,
+      validatoken.verificaToken,
       require("../src/controllers/register").postRegistro
     );
 
     //LISTAR USUARIOS:---------------------------------------------------
-    route.get("/users", this.controler.getAlumns);
+    route.get("/users", 
+    validatoken.verificaToken,this.controler.getAlumns);
 
     //BUSCAR USUARIO:----------------------------------------------------
-    route.post("/user", this.controler.postAlumn);
+    route.post("/user",
+    validatoken.verificaToken, this.controler.postAlumn);
 
     //BUSCAR USUARIO V2.1:----------------------------------------------------
     route.get("/user/:id", this.controler.getAlumnsParams);
 
     //ACTUALIZAR PAGO DE UN ALUMNO:--------------------------------------
-    route.post("/paymentUpdate", this.controler.paymentUpdate);
+    route.put("/paymentUpdate", this.controler.paymentUpdate);
 
     // -----------------------------------------------------
     // -----------------------------------------------------
@@ -64,19 +65,19 @@ class Routes {
     //LISTAR ACTIVIDADES:---------------------------------------------------
     route.get(
       "/activity",
-      // validatoken.verificaToken,
+      validatoken.verificaToken,
       require("../src/controllers/activity").allActivity
     );
     // FILTRAR ACTIVIDADES:-------------------------------------------------
     route.get(
       "/activity/:nombre",
-      // validatoken.verificaToken,
+      validatoken.verificaToken,
       require("../src/controllers/activity").singleActivity
     );
     //CREACION DE ACTIVIDAD--------------------------------------------------
     route.post(
       "/activity/add",
-      // validatoken.verificaToken,
+      validatoken.verificaToken,
       require("../src/controllers/activity").createActivity
     );
     //ACTUALIZACION DE ACTIVIDAD---------------------------------------------
