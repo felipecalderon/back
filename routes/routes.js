@@ -30,12 +30,10 @@ class Routes {
     );
 
     //LISTAR USUARIOS:---------------------------------------------------
-    route.get("/users", 
-    validatoken.verificaToken,this.controler.getAlumns);
+    route.get("/users", validatoken.verificaToken, this.controler.getAlumns);
 
     //BUSCAR USUARIO:----------------------------------------------------
-    route.post("/user",
-    validatoken.verificaToken, this.controler.postAlumn);
+    route.post("/user", validatoken.verificaToken, this.controler.postAlumn);
 
     //BUSCAR USUARIO V2.1:----------------------------------------------------
     route.get("/user/:id", this.controler.getAlumnsParams);
@@ -67,6 +65,11 @@ class Routes {
       "/activity",
       validatoken.verificaToken,
       require("../src/controllers/activity").allActivity
+    );
+    route.get(
+      "/schedule",
+      validatoken.verificaToken,
+      require("../src/controllers/activity").horarioActivy
     );
     // FILTRAR ACTIVIDADES:-------------------------------------------------
     route.get(

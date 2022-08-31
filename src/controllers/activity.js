@@ -29,6 +29,26 @@ exports.singleActivity = async (req, res) => {
   }
 };
 
+//---------------------------------MOSTRAR HORARIO SEGUN ACTIVIDAD
+exports.horarioActivy = async (req, res) => {
+  const Activities = await Actividad.findOne({ nombre: req.query.name });
+  try {
+    if (Activities === null) {
+      return res.status(404).json({
+        error: `Actividad ${req.query.name} no encontrada`,
+      });
+    }
+
+    const { horarios } = Activities;
+    identificador = horarios;
+    res.status(200).json({ horarios });
+  } catch (error) {
+    res.status(401).json({
+      error: "Error al consultar la BD",
+    });
+  }
+};
+
 //--------------------------------- CREAR ACTIVIDAD
 exports.createActivity = async (req, res) => {
   // verifica si la actividad existe
